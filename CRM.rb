@@ -18,7 +18,7 @@ class CRM
     end
 
     def call_option(user_selected)
-    	add_contact if user_selected == 1
+    	add_new_contact if user_selected == 1
     	modify_contact if user_selected == 2
     	display_contact if user_selected == 3
     	display_attribute if user_selected == 4
