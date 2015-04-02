@@ -1,26 +1,29 @@
-# contact = {
-# 	:id => 0,
-# 	:lastname => 1,
-# 	:firstname => 2,
-# 	:email => 3,
-# 	:notes => 4
-# }
-
 class Contact
 
-	attr_accessor :id, :lastname, :firstname, :email, :notes
+	attr_accessor :id, :firstname, :lastname, :email, :notes
 
-	def initialize(lastname, firstname, email, notes)
-		@lastname = lastname
+	def initialize(firstname, lastname, email, notes)
 		@firstname = firstname
+		@lastname = lastname
 		@email = email
 		@notes = notes
 	end
 
+	def add_new_contact
+		print "Enter First Name: "
+        first_name = gets.chomp
+        print "Enter Last Name: "
+        last_name = gets.chomp
+        print "Enter Email Address: "
+        email = gets.chomp
+        print "Enter a Note: "
+        note = gets.chomp
+        new_contact = Contact.new(firstname, lastname, email, notes)
+    end
 
 	def ==(other)
-		self.lastname == other.lastname and
 		self.firstname == other.firstname and
+		self.lastname == other.lastname and
 		self.email == other.email
 	end
 end
@@ -31,8 +34,8 @@ class Rolodex
 		@contacts = []
 	end
 
-	def add_contact(first, last, etc)
-		new_contact = Contact.new(first, last, etc)
+	def add_contact(firstname, firstname, email, notes)
+		new_contact = Contact.new(firstname, firstname, email, notes)
 
 		duplicate = @contacts.find {|contact| contact == new_contact }
 		return nil if duplicate
@@ -48,6 +51,7 @@ class Rolodex
 		@contacts.find { |contact| contact.id == id }
 	end
 
+
 	def search(query)
 	end
 end
@@ -59,7 +63,7 @@ puts "what do you want to do?"
 puts "--type 'add' to add a contact."
 puts "--type 'modify' to update a contact."
 puts "--type 'display all' to show all contacts."
-puts "--type 'display attribute' to search for contacts with attribute(firstname,lastname,etc.)"
+puts "--type 'display attribute' to search for contacts with attribute(firstname,firstname,etc.)"
 puts "--type 'delete' to remove contacts."
 puts "--type 'exit' to exit."
 
