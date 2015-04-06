@@ -23,6 +23,8 @@ class Rolodex
                 return @contacts.find {|contact| contact.first_name == value }
             when 2
                 return @contacts.find {|contact| contact.last_name == value }
+            when 3
+                return @contacts.find {|contact| contact.email == value }
             end
         end
     end

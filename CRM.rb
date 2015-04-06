@@ -59,24 +59,31 @@ class CRM
         id = gets.chomp.to_i
         contact = @rolodex.find(id)
         puts contact
-        # puts "Are you sure you want to modify this contact(Y/N)"
-
-        puts "What would you like to modify? 1. First Name, 2. Last Name, 3. email, 4. notes"
-        attribute_to_modify = gets.chomp.to_i
-        puts "Enter the new value:"
-        new_value = gets.chomp
-     
-        case attribute_to_modify
-        when 1
-            contact.first_name = new_value
-        when 2
-            contact.last_name = new_value
-        when 3
-            contact.email = new_value
-        when 4
-            contact.notes = new_value
+        puts "Are you sure you want to modify this contact(Y/N)"
+        user_input = gets.chomp
+        
+        if user_input == "Y"
+            puts "What would you like to modify? (1. First Name, 2. Last Name, 3. email, 4. notes)"
+            attribute_to_modify = gets.chomp.to_i
+            puts "Enter the new value:"
+            new_value = gets.chomp
+         
+            case attribute_to_modify
+            when 1
+                contact.first_name = new_value
+            when 2
+                contact.last_name = new_value
+            when 3
+                contact.email = new_value
+            when 4
+                contact.notes = new_value
+            end
+            puts "contact has been updated."
+        elsif user_input == "N"
+            main_menu
+        else
+            puts "Error"
         end
-        # main_menu if user_input == "N"
     end
 
     def display_contact
@@ -87,7 +94,7 @@ class CRM
     end 
 
     def display_attribute
-        puts "Enter an attribute to search contact(first name, last name, email): "
+        puts "Enter an attribute to search contact(1. First Name, 2. Last Name, 3. email): "
         attribute = gets.chomp.to_i
         puts "Enter the value to search:"
         value = gets.chomp
